@@ -1,5 +1,6 @@
 package com.wofeng.articlemanagement.securityConfig;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -35,6 +36,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         super.configure(auth);
     }
 
+    @Autowired
+    private MyAuthenticationSucessHandler authenticationSucessHandler;
+
     /**
      * 身份验证管理生成器
      * @param http
@@ -42,6 +46,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
 
     @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.formLogin() // 表单登录
+                // http.httpBasic() // HTTP Basic
+                .loginPage("/authentication/require") // 登录跳转 URL
+                .loginProcessingUrl("/login") // 处理表单登录 URL
+                // 处理登录成功
+                .successHandler(authenticationSucessHandler)
+                .and()
+                .authorizeRequests() // 授权配置
+                .antMatchers("/authentication/require", "/login.html").permitAll() // 登录跳转 URL 无需认证
+                .anyRequest()  // 所有请求
+                .authenticated() // 都需要认证
+                .and().csrf().disable();
+    }
+
+    /*@Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
@@ -61,7 +81,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //默认都会产生一个hiden标签 里面有安全相关的验证 防止请求伪造 这边我们暂时不需要 可禁用掉
         http .csrf().disable();
 
-    }
+    }*/
 
     /**
      * WEB安全
@@ -72,27 +92,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         super.configure(web);
     }
-   /* @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()//配置权限
-                    .antMatchers("/static/**").permitAll()
-                    .anyRequest().authenticated()//任意请求需要登录
-                    .and()
-                .formLogin()//开启formLogin默认配置
-                //请求时未登录跳转接口
-                    .loginPage("/login")
-                //用户密码错误跳转接口
-                    .failureUrl("/login")
-                    .permitAll()
-                //登录成功跳转接口
-                    .defaultSuccessUrl("/index",true)
-                //post登录接口，登录验证由系统实现
-                    .loginProcessingUrl("/login")
-                //要认证的用户参数名，默认username
-                    .usernameParameter("username")
-                //要认证的密码参数名，默认password
-                    .passwordParameter("password");
 
-    }*/
 }
