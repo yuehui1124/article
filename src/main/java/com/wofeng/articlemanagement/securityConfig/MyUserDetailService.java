@@ -42,7 +42,7 @@ public class MyUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        if(username == null){
+        /*if(username == null){
             throw new UsernameNotFoundException("用户名不存在");
         }
         SysUser user = new SysUser();
@@ -61,10 +61,11 @@ public class MyUserDetailService implements UserDetailsService {
 
         }else {
             throw new UsernameNotFoundException("用户名不存在");
-        }
+        }*/
 
         //随便创建一个用户. myusql 生成准备重新整合
-
+        SysUser user = new SysUser();
+        user.setUsername(username);
         user.setPassword(this.passwordEncoder.encode("123456"));
         System.out.println(user.getPassword());
         return new User(username, user.getPassword(), true,

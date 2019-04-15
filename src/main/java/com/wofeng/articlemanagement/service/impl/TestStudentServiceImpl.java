@@ -3,7 +3,7 @@ package com.wofeng.articlemanagement.service.impl;
 import com.wofeng.articlemanagement.entity.TestStudent;
 import com.wofeng.articlemanagement.mapper.TestStudentMapper;
 import com.wofeng.articlemanagement.service.TestStudentService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.wofeng.articlemanagement.baseDao.MyServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2019-04-15
  */
 @Service
-public class TestStudentServiceImpl extends ServiceImpl<TestStudentMapper, TestStudent> implements TestStudentService {
+public class TestStudentServiceImpl extends MyServiceImpl<TestStudentMapper, TestStudent> implements TestStudentService {
 
 }

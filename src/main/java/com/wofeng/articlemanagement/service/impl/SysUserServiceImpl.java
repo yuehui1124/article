@@ -3,7 +3,7 @@ package com.wofeng.articlemanagement.service.impl;
 import com.wofeng.articlemanagement.entity.SysUser;
 import com.wofeng.articlemanagement.mapper.SysUserMapper;
 import com.wofeng.articlemanagement.service.SysUserService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.wofeng.articlemanagement.baseDao.MyServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2019-04-15
  */
 @Service
-public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
+public class SysUserServiceImpl extends MyServiceImpl<SysUserMapper, SysUser> implements SysUserService {
 
 }

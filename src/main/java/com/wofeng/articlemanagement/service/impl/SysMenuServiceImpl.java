@@ -3,7 +3,7 @@ package com.wofeng.articlemanagement.service.impl;
 import com.wofeng.articlemanagement.entity.SysMenu;
 import com.wofeng.articlemanagement.mapper.SysMenuMapper;
 import com.wofeng.articlemanagement.service.SysMenuService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.wofeng.articlemanagement.baseDao.MyServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2019-04-15
  */
 @Service
-public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> implements SysMenuService {
+public class SysMenuServiceImpl extends MyServiceImpl<SysMenuMapper, SysMenu> implements SysMenuService {
 
 }

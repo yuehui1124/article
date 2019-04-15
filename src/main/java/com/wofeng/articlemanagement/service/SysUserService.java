@@ -1,7 +1,7 @@
 package com.wofeng.articlemanagement.service;
 
 import com.wofeng.articlemanagement.entity.SysUser;
-import com.baomidou.mybatisplus.extension.service.IService;
+import com.wofeng.articlemanagement.baseDao.MyService;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author yueyueyue
  * @since 2019-04-15
  */
-public interface SysUserService extends IService<SysUser> {
+public interface SysUserService extends MyService<SysUser> {
 
 }

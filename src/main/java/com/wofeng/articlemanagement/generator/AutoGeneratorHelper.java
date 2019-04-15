@@ -17,8 +17,9 @@ import com.baomidou.mybatisplus.generator.config.rules.PropertyInfo;
  * 自动生成映射工具类
  * Mybatis-Plus代码生成器使用
  */
-public class AutoGeneratorHelper {
- 
+public class AutoGeneratorHelper extends StrategyConfig {
+
+
 	/**
 	 * 
 	 * 测试 run 执行
@@ -97,9 +98,9 @@ public class AutoGeneratorHelper {
         // 自定义 mapper 父类
          strategy.setSuperMapperClass("com.wofeng.articlemanagement.baseDao.MyMapper");
         // 自定义 service 父类
-        // strategy.setSuperServiceClass("com.baomidou.demo.TestService");
+         strategy.setSuperServiceClass("com.wofeng.articlemanagement.baseDao.MyService");
         // 自定义 service 实现类父类
-        // strategy.setSuperServiceImplClass("com.baomidou.demo.TestServiceImpl");
+         strategy.setSuperServiceImplClass("com.wofeng.articlemanagement.baseDao.MyServiceImpl");
         // 自定义 controller 父类
         // strategy.setSuperControllerClass("com.baomidou.demo.TestController");
         // 【实体】是否生成字段常量（默认 false）
