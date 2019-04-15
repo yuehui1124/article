@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+spring:
+  #开启AOP
+  aop:
+    proxy-target-class: true
+  # jdbc
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/article?serverTimezone=GMT&useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: root
+#  thymeleaf:
+#    cache: false
+#    prefix: classpath:/templates/
+mybatis:
+  type-aliases-package: com.wofeng.articlemanagement.entity
+  mapper-locations: classpath:com/wofeng/articlemanagement/mapper/xml/*.xml
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
