@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" >
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>这里是title</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,17 +11,23 @@
           href="static/bootstrapDemo/css/components.css"/>
     <link type="text/css" rel="stylesheet" th:href="@{/static/bootstrapDemo/css/custom.css}"
           href="static/bootstrapDemo/css/custom.css"/>
-    <!-- end of global styles-->
+    <!--&lt;!&ndash; end of global styles&ndash;&gt;-->
     <link type="text/css" rel="stylesheet" th:href="@{/static/bootstrapDemo/vendors/c3/css/c3.min.css}"
-          href="static/bootstrapDemo/vendors/c3/css/c3.min.css"/>
-    <link type="text/css" rel="stylesheet" th:href="@{/static/bootstrapDemo/vendors/toastr/css/toastr.min.css}"
+           href="static/bootstrapDemo/vendors/c3/css/c3.min.css"/>
+     <link type="text/css" rel="stylesheet" th:href="@{/static/bootstrapDemo/vendors/toastr/css/toastr.min.css}"
           href="static/bootstrapDemo/vendors/toastr/css/toastr.min.css"/>
-    <link type="text/css" rel="stylesheet" th:href="@{static/bootstrapDemo/vendors/switchery/css/switchery.min.css}"
+    <link type="text/css" rel="stylesheet" th:href="@{/static/bootstrapDemo/vendors/switchery/css/switchery.min.css}"
           href="static/bootstrapDemo/vendors/switchery/css/switchery.min.css"/>
-    <link type="text/css" rel="stylesheet" th:href="@{static/bootstrapDemo/css/pages/new_dashboard.css}"
+    <link type="text/css" rel="stylesheet" th:href="@{/static/bootstrapDemo/css/pages/new_dashboard.css}"
           href="static/bootstrapDemo/css/pages/new_dashboard.css"/>
-    <link type="text/css" rel="stylesheet"  href="#" id="skin_change"/>
+    <!--<link type="text/css" rel="stylesheet"  href="#" id="skin_change"/>-->
 </head>
+<script>
+    $(function () {
+        console.log(12321321);
+    })
+
+</script>
 
 <body class="body">
 <div class="preloader" style=" position: fixed;
@@ -45,7 +51,7 @@ z-index: 999999">
 </div>
 <div id="wrap">
     <div id="top">
-        <!-- .navbar -->
+        <!--&lt;!&ndash; .navbar &ndash;&gt;-->
         <nav class="navbar navbar-static-top">
             <div class="container-fluid m-0">
                 <a class="navbar-brand float-left" href="index.html">
@@ -68,12 +74,10 @@ z-index: 999999">
 
                 </div>
             </div>
-            <!-- /.container-fluid -->
+
         </nav>
-        <!-- /.navbar -->
-        <!-- /.head -->
     </div>
-    <!-- /#top -->
+
     <div class="wrapper">
         <div id="left">
             <div class="menu_scroll">
@@ -103,10 +107,10 @@ z-index: 999999">
 
 
                 </ul>
-                <!-- /#menu -->
+
             </div>
         </div>
-        <!-- /#left -->
+
         <div id="content" class="bg-container">
             <header class="head">
                 <div class="main-bar">
@@ -134,7 +138,7 @@ z-index: 999999">
 
             </div>
 
-            <!-- Modal -->
+
             <div class="modal fade" id="search_modal" tabindex="-1" role="dialog" aria-hidden="true">
                 <form>
                     <div class="modal-dialog" role="document">
@@ -154,7 +158,7 @@ z-index: 999999">
             </div>
         </div>
     </div>
-    <!--wrapper-->
+
     <div id="request_list">
         <div class="request_scrollable">
             <ul class="nav nav-tabs m-t-15">
@@ -168,7 +172,7 @@ z-index: 999999">
 
         </div>
     </div>
-    <!-- /#content -->
+
     <div id="right">
         <div class="right_content">
             <div class="well-small dark m-t-15">
@@ -198,7 +202,7 @@ z-index: 999999">
                             <div class="skin_mint skin_size b_t_r"></div>
                             <div class="skin_mint_border skin_shaddow skin_size b_b_r"></div>
                         </div>
-                        <!--</div>-->
+                        &lt;!&ndash;</div>&ndash;&gt;
                         <div class="skin_btn skinsingle_btn skin_blue b_r height_40 skin_shaddow"
                              onclick="javascript:loadjscssfile('blue_skin.css','css')"></div>
                         <div class="skin_btn skinsingle_btn skin_green b_r height_40 skin_shaddow"
@@ -226,13 +230,15 @@ z-index: 999999">
     </div>
 </div>
 <a id="baseUrl" th:href="@{/}"></a>
-<!-- /#wrap -->
-<script type="text/javascript" src="static/jquery-3.3.1/jquery-3.3.1.min.js"></script>
+<!--&lt;!&ndash; /#wrap &ndash;&gt;-->
+<script type="text/javascript" th:src="@{/static/jquery-3.3.1/jquery-3.3.1.min.js}"
+        src="static/jquery-3.3.1/jquery-3.3.1.min.js"></script>
 
-<!-- global scripts-->
+
+
 <script type="text/javascript" src="static/bootstrapDemo/js/components.js"></script>
 <script type="text/javascript" src="static/bootstrapDemo/js/custom.js"></script>
-<!-- global scripts end-->
+
 <script type="text/javascript" th:src="@{static/bootstrapDemo/vendors/slimscroll/js/jquery.slimscroll.min.js}"
         src="static/bootstrapDemo/vendors/slimscroll/js/jquery.slimscroll.min.js"></script>
 <script type="text/javascript" th:src="@{static/bootstrapDemo/vendors/raphael/js/raphael-min.js}"
@@ -265,9 +271,10 @@ z-index: 999999">
         src="static/bootstrapDemo/vendors/jquery_newsTicker/js/newsTicker.js"></script>
 <script type="text/javascript" th:src="@{static/bootstrapDemo/vendors/countUp.js/js/countUp.min.js}"
         src="static/bootstrapDemo/vendors/countUp.js/js/countUp.min.js"></script>
-<!--end of plugin scripts-->
-<script type="text/javascript" th:src="@{static/bootstrapDemo/js/pages/new_dashboard.js}"
-        src="static/bootstrapDemo/js/pages/new_dashboard.js"></script>
+
+<!--<script type="text/javascript" th:src="@{static/bootstrapDemo/js/pages/new_dashboard.js}"
+        src="static/bootstrapDemo/js/pages/new_dashboard.js"></script>-->
+
 
 
 <script type="text/javascript">
@@ -276,8 +283,7 @@ z-index: 999999">
         const baseUrl = $("#baseUrl").val();
         console.log(baseUrl);
         $.ajax({
-            url: baseUrl+"/login",
-            type: get
+            url: baseUrl+"/test",
         }).then(function (res) {
             console.log(res);
         })
