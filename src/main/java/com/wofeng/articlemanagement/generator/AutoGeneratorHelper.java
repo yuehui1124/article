@@ -1,3 +1,4 @@
+/*
 package com.wofeng.articlemanagement.generator;
 
 
@@ -8,19 +9,24 @@ import com.baomidou.mybatisplus.generator.config.GlobalConfig;
 import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
+import com.baomidou.mybatisplus.generator.config.po.TableFill;
 import com.baomidou.mybatisplus.generator.config.rules.DbColumnType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.config.rules.PropertyInfo;
 
+import java.util.List;
+
+*/
 /**
  * 
  * 自动生成映射工具类
  * Mybatis-Plus代码生成器使用
- */
+ *//*
+
 public class AutoGeneratorHelper extends StrategyConfig {
 
-
-	/**
+	*/
+/**
 	 * 
 	 * 测试 run 执行
 	 * 
@@ -28,7 +34,8 @@ public class AutoGeneratorHelper extends StrategyConfig {
 	 * 配置方法查看
 	 * </p>
 	 * 
-	 */
+	 *//*
+
 	public static void main(String[] args ) {
 		
 
@@ -96,11 +103,11 @@ public class AutoGeneratorHelper extends StrategyConfig {
         // 自定义实体，公共字段
         // strategy.setSuperEntityColumns(new String[] { "test_id", "age" });
         // 自定义 mapper 父类
-         strategy.setSuperMapperClass("com.wofeng.articlemanagement.baseDao.MyMapper");
+         strategy.setSuperMapperClass("tk.mybatis.mapper.common.Mapper");
         // 自定义 service 父类
-         strategy.setSuperServiceClass("com.wofeng.articlemanagement.baseDao.MyService");
-        // 自定义 service 实现类父类
-         strategy.setSuperServiceImplClass("com.wofeng.articlemanagement.baseDao.MyServiceImpl");
+         strategy.setSuperServiceClass("com.wofeng.articlemanagement.baseDao.IBaseService");
+        //自定义 service 实现类父类
+         strategy.setSuperServiceImplClass("com.wofeng.articlemanagement.baseDao.SimpleServiceImpl");
         // 自定义 controller 父类
         // strategy.setSuperControllerClass("com.baomidou.demo.TestController");
         // 【实体】是否生成字段常量（默认 false）
@@ -119,3 +126,4 @@ public class AutoGeneratorHelper extends StrategyConfig {
 	}
 	
 }
+*/

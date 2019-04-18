@@ -1,7 +1,7 @@
 package com.wofeng.articlemanagement.securityConfig;
 
-import com.wofeng.articlemanagement.securityConfig.handler.MyAuthenticationFailureHandler;
-import com.wofeng.articlemanagement.securityConfig.handler.MyAuthenticationSucessHandler;
+import com.wofeng.articlemanagement.securityHandler.MyAuthenticationFailureHandler;
+import com.wofeng.articlemanagement.securityHandler.MyAuthenticationSucessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -50,24 +50,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .formLogin() // 表单登录
-                // http.httpBasic() // HTTP Basic
-                // 登录跳转 URL
-                    .loginPage("/authentication/require")
-                // 处理表单登录 URL
-                    .loginProcessingUrl("/login")
-                // 处理登录成功
+                .csrf()
+                .disable()
+                .authorizeRequests()
+                    .antMatchers("/", "/login","/**")
+                    .permitAll()
+                    .anyRequest()
+                    .authenticated()
+                .   and()
+                .headers().frameOptions().sameOrigin()//同意iframe加载同域名下页面
+                .and()
+                .formLogin()
+                    .loginPage("/login")
+                    .failureUrl("/login?error=true")
+                    .defaultSuccessUrl("/index")
+                    .permitAll()
+                    // 处理登录成功
                     .successHandler(authenticationSucessHandler)
-                // 处理登录失败
+                    // 处理登录失败
                     .failureHandler(authenticationFailureHandler)
                     .and()
-                // 授权配置
-                .authorizeRequests()
-                // 登录跳转 URL 无需认证
-                    .antMatchers("/authentication/require", "/login.html","/static/**").permitAll()
-                    .anyRequest()  // 所有请求
-                    .authenticated() // 都需要认证
-                    .and().csrf().disable();
+                .logout()
+                    .logoutSuccessUrl("/login")
+                    .permitAll();
     }
 
 

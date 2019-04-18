@@ -1,5 +1,6 @@
 package com.wofeng.articlemanagement.securityConfig;
 
+
 import com.wofeng.articlemanagement.entity.SysRoleMenu;
 import com.wofeng.articlemanagement.entity.SysUser;
 import com.wofeng.articlemanagement.entity.SysUserRole;
@@ -18,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,38 +40,63 @@ public class MyUserDetailService implements UserDetailsService {
     @Autowired
     private SysUserRoleMapper sysUserRoleMapper;
     @Autowired
-    private SysRoleMenuMapper roleMenuMapper;
+    private SysRoleMenuMapper sysRoleMenuMapper;
 
+    /**
+     * 登录
+     * @param username 用户名称
+     * @return userDetails
+     * @throws UsernameNotFoundException 用户不存在
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        /*if(username == null){
+        UserDetails userDetails = null;
+        if(username == null){
             throw new UsernameNotFoundException("用户名不存在");
         }
-        SysUser user = new SysUser();
-        user.setUsername(username);
-        SysUser testUser =  this.userMapper.selectOne(user);
-        if (testUser != null ){
-            //查询用户身份,根据身份查询权限
-            SysUserRole userRole = this.sysUserRoleMapper.selectOne(new SysUserRole(){{
-                setUserId(getUserId());
+        try {
+            SysUser user =  this.userMapper.selectOne(new SysUser() {{
+                setUsername(username);
             }});
-            //查询role 对应的权限
-            Example roleMenuExanmple = new Example(SysRoleMenu.class);
-            roleMenuExanmple.createCriteria().andEqualTo("menuId",userRole.getRoleId());
-            List<SysRoleMenu> roleMenus = roleMenuMapper.selectByExample(roleMenuExanmple);
-            //迭代list
+            if (user != null) {
+                Example roleExample = new Example(SysUserRole.class);
+                roleExample.createCriteria().andEqualTo("userId",user.getId());
+                //查出所有角色ID
+                List<SysUserRole> userRoles = this.sysUserRoleMapper.selectByExample(roleExample);
+                if (userRoles.size() > 0) {
+                    List<Integer> roleIds = new ArrayList<>();
+                    for (SysUserRole userRole : userRoles){
+                        roleIds.add(userRole.getRoleId());
+                    }
+                    //查出中间表
+                    Example roleMenuExample = new Example(SysRoleMenu.class);
+                    roleMenuExample.createCriteria().andIn("roleId",roleIds);
+                    List<SysRoleMenu> roleMenus = this.sysRoleMenuMapper.selectByExample(roleMenuExample);
+                    if (roleMenus.size() > 0) {
+                        List<Integer> menuIds = new ArrayList<>();
+                        for (SysRoleMenu sysRoleMenu : roleMenus) {
+                            menuIds.add(sysRoleMenu.getMenuId());
+                        }
+                        //根据menuID查出所有菜单
+                        userDetails = new MyUserDetail(user,roleIds,menuIds);
+                    }else {
+                        log.error("该用户没有菜单,{}",user.getUsername());
+                    }
+                } else {
+                    log.error("该用户没有角色,{}",user.getUsername());
+                }
+            }else {
+                throw new UsernameNotFoundException("用户名不存在");
+            }
+        }catch (Exception e) {
+            log.error("查询用户失败, 帐号 {}，{}", username, e.getMessage());
+        }
+        return userDetails;
 
-        }else {
-            throw new UsernameNotFoundException("用户名不存在");
-        }*/
-
-        //随便创建一个用户. myusql 生成准备重新整合
-        SysUser user = new SysUser();
-        user.setUsername(username);
-        user.setPassword(this.passwordEncoder.encode("123456"));
-        System.out.println(user.getPassword());
-        return new User(username, user.getPassword(), true,
+        /*return new User(username, user.getPassword(), true,
                 true, true,
-                true, AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+                true, AuthorityUtils.commaSeparatedStringToAuthorityList(role.toString()));*/
     }
+
+
 }

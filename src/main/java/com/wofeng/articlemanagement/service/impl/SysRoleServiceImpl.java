@@ -3,7 +3,6 @@ package com.wofeng.articlemanagement.service.impl;
 import com.wofeng.articlemanagement.entity.SysRole;
 import com.wofeng.articlemanagement.mapper.SysRoleMapper;
 import com.wofeng.articlemanagement.service.SysRoleService;
-import com.wofeng.articlemanagement.baseDao.MyServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,9 +11,9 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author yueyueyue
- * @since 2019-04-15
+ * @since 2019-04-17
  */
 @Service
-public class SysRoleServiceImpl extends MyServiceImpl<SysRoleMapper, SysRole> implements SysRoleService {
+public class SysRoleServiceImpl implements SysRoleService {
 
 }

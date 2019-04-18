@@ -1,7 +1,5 @@
 package com.wofeng.articlemanagement.service;
 
-import com.wofeng.articlemanagement.entity.SysRole;
-import com.wofeng.articlemanagement.baseDao.MyService;
 
 /**
  * <p>
@@ -9,8 +7,8 @@ import com.wofeng.articlemanagement.baseDao.MyService;
  * </p>
  *
  * @author yueyueyue
- * @since 2019-04-15
+ * @since 2019-04-17
  */
-public interface SysRoleService extends MyService<SysRole> {
+public interface SysRoleService  {
 
 }

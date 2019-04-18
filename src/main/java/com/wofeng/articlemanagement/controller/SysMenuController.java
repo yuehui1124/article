@@ -1,7 +1,6 @@
 package com.wofeng.articlemanagement.controller;
 
 
-import com.wofeng.articlemanagement.entity.SysUser;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
@@ -12,10 +11,11 @@ import org.springframework.stereotype.Controller;
  * </p>
  *
  * @author yueyueyue
- * @since 2019-04-15
+ * @since 2019-04-18
  */
 @Controller
 @RequestMapping("/articlemanagement/sysMenu")
 public class SysMenuController {
+
 }
 

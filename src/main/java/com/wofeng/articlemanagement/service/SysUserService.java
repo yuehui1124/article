@@ -1,7 +1,6 @@
 package com.wofeng.articlemanagement.service;
 
-import com.wofeng.articlemanagement.entity.SysUser;
-import com.wofeng.articlemanagement.baseDao.MyService;
+
 
 /**
  * <p>
@@ -9,8 +8,8 @@ import com.wofeng.articlemanagement.baseDao.MyService;
  * </p>
  *
  * @author yueyueyue
- * @since 2019-04-15
+ * @since 2019-04-17
  */
-public interface SysUserService extends MyService<SysUser> {
+public interface SysUserService {
 
 }
