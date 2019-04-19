@@ -16,7 +16,46 @@
     <link type="text/css" rel="stylesheet" th:href="@{/bootstrapDemo/css/pages/new_dashboard.css}"/>
     <!--<link type="text/css" rel="stylesheet"  href="#" id="skin_change"/>-->
 </head>
+<a id="baseUrl" th:href="@{/}"></a>
+<!--&lt;!&ndash; /#wrap &ndash;&gt;-->
+<script type="text/javascript" th:src="@{/jquery-3.3.1/jquery-3.3.1.min.js}"
+></script>
 
+<script type="text/javascript" th:src="@{/bootstrapDemo/js/components.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrapDemo/js/custom.js}"></script>
+
+<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/slimscroll/js/jquery.slimscroll.min.js}"
+></script>
+<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/raphael/js/raphael-min.js}"
+></script>
+<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/d3/js/d3.min.js}"
+></script>
+<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/c3/js/c3.min.js}"
+></script>
+<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/toastr/js/toastr.min.js}"
+></script>
+<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/switchery/js/switchery.min.js}"
+></script>
+<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/flotchart/js/jquery.flot.js}"
+></script>
+<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/flotchart/js/jquery.flot.resize.js}"
+></script>
+<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/flotchart/js/jquery.flot.stack.js}"
+></script>
+<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/flotchart/js/jquery.flot.time.js}"
+></script>
+<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/flotspline/js/jquery.flot.spline.min.js}"
+></script>
+<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/flotchart/js/jquery.flot.categories.js}"
+></script>
+<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/flotchart/js/jquery.flot.pie.js}"
+></script>
+<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/flot.tooltip/js/jquery.flot.tooltip.min.js}"
+></script>
+<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/jquery_newsTicker/js/newsTicker.js}"
+></script>
+<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/countUp.js/js/countUp.min.js}"
+></script>
 <body class="body">
 <div class="preloader" style=" position: fixed;
   width: 100%;
@@ -67,26 +106,28 @@ z-index: 999999">
 
     <div class="wrapper">
         <div id="left">
-            <div class="menu_scroll" th:replace="sidebar" >
-                <ul id="menu">
-                    <!--<li class="active"><a href="index.html"><i class="fa fa-home"></i><span class="link-title menu_hide">&nbsp;Dashboard 1</span></a></li><li class="dropdown_menu"><a href="javascript:;"><i class="fa fa-anchor"></i><span class="link-title menu_hide">&nbsp; 这是个一级标签</span><span class="fa arrow menu_hide"></span></a><ul><li><a href="这里是a标签"><i class="fa fa-angle-right"></i>&nbsp; 这是个二级菜单</a></li>
-                        </ul>
-                    </li>-->
-                    <!--<li class="active">
-                        <a href=/index><i class="fa fa-home"></i><span
-                                class="link-title menu_hide">&nbsp;测试首页</span></a>
-                    </li>
-                    <li class="dropdown_menu">
-                        <a href="javascript:;">
-                            <i class="fa fa-anchor"></i>
-                            <span class="link-title menu_hide">&nbsp; 测试一级菜单</span>
-                            <span class="fa arrow menu_hide"></span></a>
-                        <ul>
-                            <li><a href="/index"><i class="fa fa-angle-right"></i>&nbsp; 测试二级菜单</a></li>
-                        </ul>
-                    </li>-->
-                </ul>
+            <div th:replace="sidebar">
+                <div class="menu_scroll">
+                    <ul id="menu">
+                        <!--<li class="active"><a href="index.html"><i class="fa fa-home"></i><span class="link-title menu_hide">&nbsp;Dashboard 1</span></a></li><li class="dropdown_menu"><a href="javascript:;"><i class="fa fa-anchor"></i><span class="link-title menu_hide">&nbsp; 这是个一级标签</span><span class="fa arrow menu_hide"></span></a><ul><li><a href="这里是a标签"><i class="fa fa-angle-right"></i>&nbsp; 这是个二级菜单</a></li>
+                            </ul>
+                        </li>-->
+                        <!--<li class="active">
+                            <a href=/index><i class="fa fa-home"></i><span
+                                    class="link-title menu_hide">&nbsp;测试首页</span></a>
+                        </li>
+                        <li class="dropdown_menu">
+                            <a href="javascript:;">
+                                <i class="fa fa-anchor"></i>
+                                <span class="link-title menu_hide">&nbsp; 测试一级菜单</span>
+                                <span class="fa arrow menu_hide"></span></a>
+                            <ul>
+                                <li><a href="/index"><i class="fa fa-angle-right"></i>&nbsp; 测试二级菜单</a></li>
+                            </ul>
+                        </li>-->
+                    </ul>
 
+                </div>
             </div>
         </div>
     </div>
@@ -113,7 +154,7 @@ z-index: 999999">
             </div>
 
         </div>
-
+        <input type="hidden" id="h_menu" th:value="${#authentication.principal.menu}"/>
 
         <div class="modal fade" id="search_modal" tabindex="-1" role="dialog" aria-hidden="true">
             <form>
@@ -167,46 +208,7 @@ z-index: 999999">
     </div>
 </div>
 </div>
-<a id="baseUrl" th:href="@{/}"></a>
-<!--&lt;!&ndash; /#wrap &ndash;&gt;-->
-<script type="text/javascript" th:src="@{/jquery-3.3.1/jquery-3.3.1.min.js}"
-></script>
 
-<script type="text/javascript" th:src="@{/bootstrapDemo/js/components.js}"></script>
-<script type="text/javascript" th:src="@{/bootstrapDemo/js/custom.js}"></script>
-
-<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/slimscroll/js/jquery.slimscroll.min.js}"
-></script>
-<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/raphael/js/raphael-min.js}"
-></script>
-<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/d3/js/d3.min.js}"
-></script>
-<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/c3/js/c3.min.js}"
-></script>
-<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/toastr/js/toastr.min.js}"
-></script>
-<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/switchery/js/switchery.min.js}"
-></script>
-<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/flotchart/js/jquery.flot.js}"
-></script>
-<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/flotchart/js/jquery.flot.resize.js}"
-></script>
-<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/flotchart/js/jquery.flot.stack.js}"
-></script>
-<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/flotchart/js/jquery.flot.time.js}"
-></script>
-<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/flotspline/js/jquery.flot.spline.min.js}"
-></script>
-<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/flotchart/js/jquery.flot.categories.js}"
-></script>
-<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/flotchart/js/jquery.flot.pie.js}"
-></script>
-<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/flot.tooltip/js/jquery.flot.tooltip.min.js}"
-></script>
-<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/jquery_newsTicker/js/newsTicker.js}"
-></script>
-<script type="text/javascript" th:src="@{/bootstrapDemo/vendors/countUp.js/js/countUp.min.js}"
-></script>
 
 <!--<script type="text/javascript" th:src="@{/bootstrapDemo/js/pages/new_dashboard.js}"
         src="/bootstrapDemo/js/pages/new_dashboard.js"></script>-->
@@ -221,8 +223,9 @@ z-index: 999999">
 -->
 
 <script>
-    console.log('${#authentication.principal.roles}')
+
     $(function () {
+
         var baseUrl = $('#baseUrl').val();
         console.log("测试测试");
         $.ajax({
@@ -242,7 +245,8 @@ z-index: 999999">
             }
         });
 
-
+        $("#menu").html($("h_menu").val());
+        console.log(123)
     })
 
 </script>
