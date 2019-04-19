@@ -1,0 +1,11 @@
+
+
+<div class="menu_scroll" id="tihuan" xmlns:th="http://www.w3.org/1999/xhtml">
+<ul id="menu">
+
+</ul>
+    <input type="hidden" id="h_menu" th:value="${#authentication.principal.menu}"/>
+</div>
+<script>
+   $("#menu").html($("h_menu").val())
+</script>

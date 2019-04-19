@@ -1,7 +1,9 @@
 package com.wofeng.articlemanagement.securityConfig;
 
 import com.wofeng.articlemanagement.entity.SysUser;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
@@ -13,7 +15,8 @@ import java.util.List;
  * @date 2019/4/17 18:23
  * Description: article-management
  */
-public class MyUserDetail implements UserDetails, Serializable {
+@Data
+public class MyUserDetail implements UserDetails {
 
     private SysUser user;
     /**
@@ -24,31 +27,29 @@ public class MyUserDetail implements UserDetails, Serializable {
     /**
      * 身份
      */
-    private List<Integer> roles;
+    private String role;
 
     /**
      * 目录
      */
-    private List<Integer> menus;
+    private String menu;
 
 
-    MyUserDetail(SysUser user, List<Integer> role, List<Integer> menu) {
+    MyUserDetail(SysUser user, String role, String menu) {
         this.user = user;
 
-        this.roles = role;
+        this.role = role;
 
         this.username = user.getUsername();
 
-
-
-        this.menus = menu;
+        this.menu = menu;
     }
 
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return AuthorityUtils.createAuthorityList(role.toString());
     }
 
 
