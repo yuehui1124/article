@@ -45,34 +45,39 @@ public class SystemService {
                 menuExample.setOrderByClause("sorter");
                 List<SysMenu> menuList = this.menuMapper.selectByExample(menuExample);
                 //查询所有一级菜单
-
                 List<SysMenu> FirstMenus = menuList.stream()
                         .filter(menu -> 0 == menu.getParentId())
                         .collect(Collectors.toList());
-                //获取所有二级菜单 拼接
                 Map<Object,Object> map = new TreeMap<>();
                 StringBuffer menusb = new StringBuffer();
                 HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
                 String contextPath = request.getContextPath();
                 for (SysMenu menu : FirstMenus) {
+                    //拼接一级菜单 如果level 是0 的 说明是直接跳转的
                     if (menu.getLevel() == 0) {
-                        menusb.append("<li class=\"active\"><a href="+contextPath +menu.getUrl()+"><i class=\"fa fa-home\"></i><span class=\"link-title menu_hide\">&nbsp;"+menu.getName()+"</span></a></li>");
+                        //menusb.append("<li class=\"active\"><a href="+contextPath +menu.getUrl()+"><i class=\"fa fa-home\"></i><span class=\"link-title menu_hide\">&nbsp;"+menu.getName()+"</span></a></li>");
+                        menusb.append("<li class=\"active\"><a href="+contextPath +menu.getUrl()+"><i class=\"fa fa-fw fa-dashboard\"></i> "+menu.getName()+"</a></li>");
                     }
-
+                    //获取所有二级菜单
                     List<SysMenu> twoMenus = menuList.stream()
                             .filter(twoMenu -> menu.getId() == twoMenu.getParentId())
                             .collect(Collectors.toList());
+                    //如果level 是1  说明还有下一级菜单
                     if (menu.getLevel() == 1){
-                        menusb.append(
+                        /*menusb.append(
                                 "<li class=\"dropdown_menu\"><a href=\"javascript:;\"><i class=\"fa fa-anchor\"></i><span class=\"link-title menu_hide\">&nbsp; "+menu.getName()+"</span><span class=\"fa arrow menu_hide\"></span></a>"
-                        );
+                        );*/
+                        menusb.append("<li><a href=\"javascript:;\" data-toggle=\"collapse\" data-target=\"#demo\"><i class=\"fa fa-fw fa-arrows-v\"></i> "+menu.getName()+" <i class=\"fa fa-fw fa-caret-down\"></i></a>");
                         if (twoMenus.size() > 0) {
+                            menusb.append("<ul id=\"demo\" class=\"collapse\">");
                             for (SysMenu twoMenu : twoMenus) {
-                                menusb.append(
+
+                                menusb.append("<li><a href=\""+contextPath+twoMenu.getUrl()+"\">"+twoMenu.getName()+"</a></li>");
+                                /*menusb.append(
                                         "<ul><li><a href=\""+contextPath+twoMenu.getUrl()+"\"><i class=\"fa fa-angle-right\"></i>&nbsp; "+twoMenu.getName()+"</a></li></ul>"
-                                );
+                                );*/
                             }
-                            menusb.append("</li>");
+                            menusb.append("</ul></li>");
                         }else {
                             menusb.append(
                                     "</li>"

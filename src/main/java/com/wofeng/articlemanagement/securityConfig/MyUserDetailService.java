@@ -53,8 +53,8 @@ public class MyUserDetailService implements UserDetailsService {
      * @throws UsernameNotFoundException 用户不存在
      */
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDetails userDetails = null;
+    public MyUserDetail loadUserByUsername(String username) throws UsernameNotFoundException {
+        MyUserDetail userDetails = null;
         if (username == null) {
             throw new UsernameNotFoundException("用户名不存在");
         }
@@ -97,8 +97,7 @@ public class MyUserDetailService implements UserDetailsService {
                         System.out.println("menuIds:" + menuIds.toString());
 
 
-
-                        userDetails = new MyUserDetail(user,roleIds.toString(), this.systemService.getMenus(roleIds.toString()).getData());
+                        userDetails = new MyUserDetail(user,roleIds.toString(), this.systemService.getMenus(menuIds.toString()).getData());
                     } else {
                         log.error("该用户没有菜单,{}", user.getUsername());
                     }
@@ -113,9 +112,6 @@ public class MyUserDetailService implements UserDetailsService {
         }
         return userDetails;
 
-        /*return new User(username, user.getPassword(), true,
-                true, true,
-                true, AuthorityUtils.commaSeparatedStringToAuthorityList(role.toString()));*/
     }
 
 

@@ -1,8 +1,6 @@
 package com.wofeng.articlemanagement.mvcConfig;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -20,6 +18,8 @@ public class WebMvcConfig implements WebMvcConfigurer{
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/index").setViewName("index");
-        registry.addViewController("/nicai").setViewName("nicai");
+        registry.addViewController("/user").setViewName("user");
+        registry.addViewController("/role").setViewName("system/role");
+        registry.addViewController("/menu").setViewName("menu");
     }
 }
