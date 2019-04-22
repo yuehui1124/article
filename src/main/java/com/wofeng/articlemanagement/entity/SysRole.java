@@ -1,9 +1,10 @@
 package com.wofeng.articlemanagement.entity;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
 @Table(name = "sys_role")
-public class SysRole {
+public class SysRole implements Serializable {
     @Id
     private Integer id;
 
@@ -27,6 +28,8 @@ public class SysRole {
      */
     @Column(name = "parent_id")
     private Integer parentId;
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * @return id
@@ -112,5 +115,21 @@ public class SysRole {
      */
     public void setParentId(Integer parentId) {
         this.parentId = parentId;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", code=").append(code);
+        sb.append(", name=").append(name);
+        sb.append(", status=").append(status);
+        sb.append(", parentId=").append(parentId);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

@@ -4,9 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
-/**
- * 这里要序列化 要不然 redis 和session 找事情
- */
 @Table(name = "sys_user")
 public class SysUser implements Serializable {
     @Id
@@ -48,6 +45,8 @@ public class SysUser implements Serializable {
      * 1:有效，0:禁止
      */
     private Integer status;
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * @return id
@@ -187,5 +186,24 @@ public class SysUser implements Serializable {
      */
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", username=").append(username);
+        sb.append(", nickname=").append(nickname);
+        sb.append(", password=").append(password);
+        sb.append(", email=").append(email);
+        sb.append(", createTime=").append(createTime);
+        sb.append(", modifyTime=").append(modifyTime);
+        sb.append(", status=").append(status);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

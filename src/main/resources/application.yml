@@ -18,6 +18,12 @@ mybatis:
   type-aliases-package: com.wofeng.articlemanagement.entity
   mapper-locations: classpath:com/wofeng/articlemanagement/mapper/xml/*.xml
 
+api:
+  #图片和视频存放路径
+  fileImagePath: D:/nginx-1.13.1/html/
+  #netimagePath:
+  #domain:
+
 #pagehelper:
 #  helperDialect: mysql
 #  reasonable: true

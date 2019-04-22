@@ -1,9 +1,10 @@
 package com.wofeng.articlemanagement.entity;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
 @Table(name = "test_student")
-public class TestStudent {
+public class TestStudent implements Serializable {
     @Id
     private Integer id;
 
@@ -11,6 +12,8 @@ public class TestStudent {
      * 测试表名称
      */
     private String name;
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * @return id
@@ -42,5 +45,18 @@ public class TestStudent {
      */
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", name=").append(name);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

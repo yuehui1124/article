@@ -1,10 +1,11 @@
 package com.wofeng.articlemanagement.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "sys_menu")
-public class SysMenu {
+public class SysMenu implements Serializable {
     @Id
     private Integer id;
 
@@ -19,7 +20,7 @@ public class SysMenu {
     private String url;
 
     /**
-     * 1：第一级；2：第二级，以此类推
+     * 如果是直接跳转目录:0 如果目录下面还有目录这里为1,如果再有目录,懒得设计了
      */
     private Integer level;
 
@@ -67,6 +68,8 @@ public class SysMenu {
      */
     @Column(name = "modify_time")
     private Date modifyTime;
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * @return id
@@ -119,18 +122,18 @@ public class SysMenu {
     }
 
     /**
-     * 获取1：第一级；2：第二级，以此类推
+     * 获取如果是直接跳转目录:0 如果目录下面还有目录这里为1,如果再有目录,懒得设计了
      *
-     * @return level - 1：第一级；2：第二级，以此类推
+     * @return level - 如果是直接跳转目录:0 如果目录下面还有目录这里为1,如果再有目录,懒得设计了
      */
     public Integer getLevel() {
         return level;
     }
 
     /**
-     * 设置1：第一级；2：第二级，以此类推
+     * 设置如果是直接跳转目录:0 如果目录下面还有目录这里为1,如果再有目录,懒得设计了
      *
-     * @param level 1：第一级；2：第二级，以此类推
+     * @param level 如果是直接跳转目录:0 如果目录下面还有目录这里为1,如果再有目录,懒得设计了
      */
     public void setLevel(Integer level) {
         this.level = level;
@@ -278,5 +281,28 @@ public class SysMenu {
      */
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", name=").append(name);
+        sb.append(", url=").append(url);
+        sb.append(", level=").append(level);
+        sb.append(", parentId=").append(parentId);
+        sb.append(", status=").append(status);
+        sb.append(", icon=").append(icon);
+        sb.append(", sorter=").append(sorter);
+        sb.append(", createUser=").append(createUser);
+        sb.append(", createTime=").append(createTime);
+        sb.append(", modifyUser=").append(modifyUser);
+        sb.append(", modifyTime=").append(modifyTime);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }
